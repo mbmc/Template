@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="empty">Nothing to see here</string>
+    <string name="end_point">Endpoint: %1$s</string>
+    <string name="github">Github handle</string>
+    <string name="ip">Ip address: %1$s</string>
+    <string name="repo">Repo</string>
+    <string name="scope">Scope: %1$s</string>
+    <string name="submit">Submit</string>
+    <string name="some_token">qwerty123456</string>
+    <string name="token">Token: %1$s</string>
+
+    <string name="error">An error occurred, please try again</string>
+    <string name="error_internet">No internet?</string>
+    <string name="error_not_found">Not found</string>
+    <string name="error_timeout">Slow internet?</string>
+    <string name="error_unauthorized">Unauthorized!</string>
+</resources>

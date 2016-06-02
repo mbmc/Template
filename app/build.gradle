@@ -1,0 +1,110 @@
+apply plugin: 'com.android.application'
+apply plugin: 'spoon'
+
+android {
+    compileSdkVersion project.ANDROID_COMPILE_SDK_VERSION as int
+    buildToolsVersion ANDROID_BUILD_TOOLS
+
+    applicationVariants.all { variant ->
+        def appName = ''
+        switch (variant.name) {
+            case 'productionDebug':
+                appName = 'Template prod debug'
+                break
+            case 'productionRelease':
+                appName = 'Template prod release'
+                break
+            case 'stagingDebug':
+                appName = 'Template stage debug'
+                break
+            case 'stagingRelease':
+                appName = 'Template stage release'
+                break
+        }
+        variant.resValue 'string', 'app_name', "$appName"
+    }
+
+    defaultConfig {
+        applicationId PACKAGE
+        minSdkVersion ANDROID_MIN_SDK_VERSION as int
+        targetSdkVersion project.ANDROID_TARGET_SDK_VERSION as int
+        versionCode project.VERSION_CODE as int
+        versionName VERSION_NAME
+
+        testInstrumentationRunner "com.mbmc.template.helper.TestRunner"
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        production {
+            buildConfigField 'com.mbmc.template.data.EndPoint', 'END_POINT',
+                    'com.mbmc.template.data.EndPoint.PRODUCTION'
+            buildConfigField 'boolean', 'LOG', 'false'
+        }
+
+        staging {
+            buildConfigField 'com.mbmc.template.data.EndPoint', 'END_POINT',
+                    'com.mbmc.template.data.EndPoint.STAGING'
+            buildConfigField 'boolean', 'LOG', 'true'
+        }
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+}
+
+spoon {
+    codeCoverage = true
+}
+
+dependencies {
+    // Project
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Android
+    compile 'com.android.support:support-annotations:23.4.0'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:recyclerview-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+
+    // 3rd party
+    compile 'com.google.dagger:dagger:2.2' // DI
+    provided 'com.google.dagger:dagger-compiler:2.2' // DI
+    compile 'com.squareup.retrofit2:retrofit:2.0.2' // API
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2' // API
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2' // API
+    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0' // API log
+    compile 'com.jakewharton:butterknife:8.0.1' // View binding
+    provided 'com.jakewharton:butterknife-compiler:8.0.1' // View binding
+    compile 'io.reactivex:rxandroid:1.2.0' // Rx
+    compile 'io.reactivex:rxjava:1.1.5' // Rx
+    compile 'com.jakewharton.rxbinding:rxbinding:0.4.0' // RxBinding
+    compile 'org.parceler:parceler-api:1.1.2' // Parcelable
+    provided 'org.parceler:parceler:1.1.2' // Parcelable
+    compile 'com.github.bumptech.glide:glide:3.7.0' // Image
+
+    // Test
+    androidTestCompile('com.android.support.test:runner:0.5') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestCompile('com.android.support.test:rules:0.5') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestCompile 'com.squareup.spoon:spoon-client:1.5.4'
+
+    testCompile 'junit:junit:4.12'
+}

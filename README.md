@@ -1,17 +1,19 @@
 # Template
 
-Basic android app using the following libraries:
+Basic android app using the followings:
 
-- [dagger2](https://github.com/google/dagger)
-- [retrofit2](https://github.com/square/retrofit)
-- [parceler](https://github.com/johncarl81/parceler)
-- [butterknife](https://github.com/JakeWharton/butterknife)
-- [glide](https://github.com/bumptech/glide)
-- [RxAndroid](https://github.com/ReactiveX/RxAndroid)
-- [spoon](https://github.com/square/spoon)
-- [spoon-gradle-plugin](https://github.com/stanfy/spoon-gradle-plugin)
+- [Clean Architecture](http://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+- [Android X](https://developer.android.com/jetpack/androidx)
+- [Material Design](https://material.io)
+- some [Kotlin](https://kotlinlang.org)
+- [Dagger2](https://github.com/google/dagger)
+- [Retrofit2](https://github.com/square/retrofit)
+- [RxJava2](https://github.com/ReactiveX/RxJava)
+- [Android Architecture Component](https://developer.android.com/topic/libraries/architecture)
+- [Mockito](https://github.com/mockito/mockito)
+- [Espresso](https://developer.android.com/training/testing/espresso)
 
-It also showcases the use of `Component`, `Subcomponent`, `Scope` and how to run all those libraries combined in POJO and UI test, with module override, mock APIs, API errors etc.
+It also showcases how to run all those libraries combined in POJO and UI test, with module override, mock APIs, API errors etc.
 
 PR and suggestions highly appreciated!
 

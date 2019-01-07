@@ -1,31 +1,10 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-
-android {
-    compileSdkVersion ANDROID_COMPILE_SDK_VERSION as int
-
-    defaultConfig {
-        minSdkVersion ANDROID_MIN_SDK_VERSION as int
-        targetSdkVersion ANDROID_TARGET_SDK_VERSION as int
-        versionCode 1
-        versionName "1.0"
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-}
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:' + APP_COMPAT
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation Libraries.rxkotlin
+    implementation Libraries.javax
 
-    implementation 'io.reactivex.rxjava2:rxjava:' + RX_JAVA // Rx
-    implementation 'javax.inject:javax.inject:1@jar'
-
-    testImplementation 'junit:junit:' + JUNIT
-    testImplementation 'org.mockito:mockito-core:' + MOCKITO
+    testImplementation TestLibraries.junit
+    testImplementation TestLibraries.mockito
 }

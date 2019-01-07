@@ -3,17 +3,17 @@
     <data>
         <variable
             name="repo"
-            type="com.mbmc.template.domain.entity.Repo"/>
+            type="com.mbmc.template.entity.Repo" />
     </data>
 
     <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="60dp">
-
+        android:layout_height="60dp"
+        >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{repo.name}"/>
-
+            android:text="@{repo.name}"
+            />
     </FrameLayout>
 </layout>

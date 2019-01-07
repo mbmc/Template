@@ -1,16 +1,16 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion ANDROID_COMPILE_SDK_VERSION as int
-
+    compileSdkVersion Versions.compile_sdk
     defaultConfig {
         applicationId "com.mbmc.template"
-        minSdkVersion ANDROID_MIN_SDK_VERSION as int
-        targetSdkVersion ANDROID_TARGET_SDK_VERSION as int
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion Versions.min_sdk
+        targetSdkVersion Versions.target_sdk
+        versionCode Releases.version_code
+        versionName Releases.version_name
         multiDexEnabled true
         testInstrumentationRunner "com.mbmc.template.helper.TestRunner"
     }
@@ -30,6 +30,12 @@ android {
         enabled = true
     }
 
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -37,35 +43,35 @@ android {
 }
 
 dependencies {
-    def lifecycle_version = "2.0.0"
+    implementation Libraries.kotlin_stdlib
+    implementation AndroidLibraries.appcompat
+    implementation AndroidLibraries.constraintlayout
+    implementation AndroidLibraries.lifecycle
+    implementation AndroidLibraries.material
+    kapt AndroidLibraries.databinding
 
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:' + APP_COMPAT
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
-    implementation 'com.google.android.material:material:1.0.0'
 
-    implementation 'com.google.dagger:dagger:2.16' // DI
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.16' // DI
-    implementation 'com.google.dagger:dagger-android:2.16' // DI Android
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.16' // DI Android
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0' // API
-    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0' // API + Rx
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0' // Rx Android
+    implementation Libraries.dagger // DI
+    kapt Libraries.dagger_compiler // DI
+    implementation Libraries.dagger_android // DI Android
+    kapt Libraries.dagger_android_processor // DI Android
+    implementation Libraries.retrofit_rxjava // API
+    implementation Libraries.retrofit_moshi // API
+    implementation Libraries.rxandroid
 
     implementation project(':data')
     implementation project(':domain')
 
-    testImplementation 'org.mockito:mockito-core:' + MOCKITO
-    testImplementation 'junit:junit:' + JUNIT
-    testImplementation 'androidx.arch.core:core-testing:2.0.0'
+    testImplementation TestLibraries.junit
+    testImplementation TestLibraries.mockito
+    testImplementation AndroidLibraries.core_testing
 
-    androidTestImplementation "androidx.test.ext:junit:1.1.0"
-    androidTestImplementation 'androidx.test:runner:' + RUNNER
-    androidTestImplementation 'androidx.test:rules:' + RUNNER
-    androidTestImplementation 'androidx.test.espresso:espresso-core:' + ESPRESSO_CORE
-    androidTestImplementation 'org.mockito:mockito-android:' + MOCKITO
-    androidTestImplementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-    androidTestImplementation 'androidx.arch.core:core-testing:2.0.0'
+    androidTestImplementation AndroidLibraries.junit
+    androidTestImplementation AndroidLibraries.runner
+    androidTestImplementation AndroidLibraries.rules
+    androidTestImplementation AndroidLibraries.espresso_core
+    androidTestImplementation AndroidLibraries.core_testing
+    androidTestImplementation TestLibraries.mockito
+    androidTestImplementation TestLibraries.kotlin_reflect
 }

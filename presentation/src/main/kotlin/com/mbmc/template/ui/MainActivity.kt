@@ -18,7 +18,8 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), UserEventHandler {
 
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
     private val disposables = CompositeDisposable()
     private val uiSate = UiSate()
     private val repoAdapter = RepoAdapter()
@@ -38,7 +39,6 @@ class MainActivity : AppCompatActivity(), UserEventHandler {
     }
 
     override fun onClicked() {
-        uiSate.setIsLoading()
         getRepos(handle)
     }
 
@@ -60,15 +60,15 @@ class MainActivity : AppCompatActivity(), UserEventHandler {
         binding.uiState = uiSate
         binding.adapter = repoAdapter
 
-        repoViewModel.observeRepos()
-                .observe(this, Observer {
-                    uiSate.setIsIdle()
-                    if (it.throwable == null) {
-                        repoAdapter.setContent(it.data!!)
-                    } else {
-                        uiSate.setHasError()
-                    }
-                })
+        repoViewModel.observeRepos
+            .observe(this, Observer {
+                when (it.state) {
+                    DataWrapper.State.INIT -> uiSate.setIsIdle()
+                    DataWrapper.State.LOADING -> uiSate.setIsLoading()
+                    DataWrapper.State.ERROR -> uiSate.setHasError()
+                    DataWrapper.State.SUCCESS -> repoAdapter.setContent(it.data!!)
+                }
+            })
     }
 
     private fun getRepos(handle: String) {

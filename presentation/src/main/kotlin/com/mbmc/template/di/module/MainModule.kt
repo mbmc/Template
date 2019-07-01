@@ -8,6 +8,10 @@ import com.mbmc.template.data.session.SessionManager
 import com.mbmc.template.domain.repository.RepoRepository
 import dagger.Module
 import dagger.Provides
+import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import javax.inject.Named
 
 import javax.inject.Singleton
 
@@ -19,5 +23,15 @@ class MainModule {
 
     @Provides
     @Singleton
-    fun repoRepository(apiService: ApiService, mapper: Mapper): RepoRepository =  RepoDataRepository(apiService, mapper)
+    fun repoRepository(apiService: ApiService, mapper: Mapper): RepoRepository = RepoDataRepository(apiService, mapper)
+
+    @Provides
+    @Singleton
+    @Named("workerThread")
+    fun workerThread(): Scheduler = Schedulers.io()
+
+    @Provides
+    @Singleton
+    @Named("observerThread")
+    fun observerThread(): Scheduler = AndroidSchedulers.mainThread()
 }

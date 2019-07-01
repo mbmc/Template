@@ -11,7 +11,8 @@ import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 
 class RepoUseCaseTest {
-    @Mock private lateinit var repoRepository: RepoRepository
+    @Mock
+    private lateinit var repoRepository: RepoRepository
     private lateinit var repoUseCase: RepoUseCase
 
     @Before

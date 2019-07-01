@@ -14,12 +14,12 @@ class RepoAdapter : RecyclerView.Adapter<RepoAdapter.ViewHolder>() {
     private val content = ArrayList<Repo>()
 
     @NonNull
-    override fun onCreateViewHolder(@NonNull viewGroup: ViewGroup, position: Int): RepoAdapter.ViewHolder {
+    override fun onCreateViewHolder(@NonNull viewGroup: ViewGroup, position: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(viewGroup.context)
         return ViewHolder(DataBindingUtil.inflate(layoutInflater, R.layout.repo_view, viewGroup, false))
     }
 
-    override fun onBindViewHolder(@NonNull viewHolder: RepoAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(@NonNull viewHolder: ViewHolder, position: Int) {
         viewHolder.bind(content[position])
     }
 

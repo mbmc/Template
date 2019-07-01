@@ -2,7 +2,8 @@ apply plugin: 'java-library'
 apply plugin: 'kotlin'
 
 dependencies {
-    implementation Libraries.rxkotlin
+    implementation Libraries.kotlin_stdlib
+    implementation Libraries.rxjava
     implementation Libraries.javax
 
     testImplementation TestLibraries.junit

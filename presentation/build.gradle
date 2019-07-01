@@ -48,9 +48,8 @@ dependencies {
     implementation AndroidLibraries.constraintlayout
     implementation AndroidLibraries.lifecycle
     implementation AndroidLibraries.material
+    implementation AndroidLibraries.recyclerview
     kapt AndroidLibraries.databinding
-
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
     implementation Libraries.dagger // DI
     kapt Libraries.dagger_compiler // DI
@@ -63,9 +62,9 @@ dependencies {
     implementation project(':data')
     implementation project(':domain')
 
+    testImplementation AndroidLibraries.core_testing
     testImplementation TestLibraries.junit
     testImplementation TestLibraries.mockito
-    testImplementation AndroidLibraries.core_testing
 
     androidTestImplementation AndroidLibraries.junit
     androidTestImplementation AndroidLibraries.runner

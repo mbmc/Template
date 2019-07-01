@@ -17,7 +17,8 @@ import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 
 class RepoDataRepositoryTest {
-    @Mock private lateinit var apiService: ApiService
+    @Mock
+    private lateinit var apiService: ApiService
     private lateinit var repoRepository: RepoRepository
     private val moshi = Moshi.Builder().build()
 

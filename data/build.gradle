@@ -4,8 +4,9 @@ apply plugin: 'kotlin'
 dependencies {
     implementation project(':domain')
 
+    implementation Libraries.kotlin_stdlib
     implementation Libraries.retrofit
-    implementation Libraries.rxkotlin
+    implementation Libraries.rxjava
     implementation Libraries.javax
     implementation Libraries.okio
 

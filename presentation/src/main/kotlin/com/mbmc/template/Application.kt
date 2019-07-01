@@ -10,7 +10,8 @@ import dagger.android.HasActivityInjector
 import javax.inject.Inject
 
 open class Application : android.app.Application(), HasActivityInjector {
-    @Inject lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
+    @Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
     override fun onCreate() {
         super.onCreate()

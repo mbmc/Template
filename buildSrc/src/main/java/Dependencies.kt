@@ -19,19 +19,20 @@ object Versions {
     const val material = "1.0.0"
     const val recyclerview = "1.0.0"
 
+
     // Test
     const val mockito = "2.28.2"
-    const val runner = "1.1.1"
-    const val rules = "1.1.1"
-    const val espresso_core = "3.1.1"
+    const val runner = "1.2.0"
+    const val rules = "1.2.0"
+    const val espresso_core = "3.2.0"
     const val junit = "4.12"
     const val core_testing = "2.0.0"
 
     // 3rd party
-    const val dagger = "2.16" // issues with 2.17+
+    const val dagger = "2.23.2" // issues with 2.17+ // DI
     const val javax = "1@jar"
-    const val retrofit = "2.6.0"
-    const val rxjava = "2.2.10"
+    const val retrofit = "2.6.0" // API
+    const val rxjava = "2.2.10" // API
     const val rxkotlin = "2.3.0"
     const val rxandroid = "2.1.1"
     const val moshi = "1.8.0"
@@ -41,7 +42,6 @@ object Versions {
 object Libraries {
     const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
-
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
     const val dagger_compiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
     const val dagger_android = "com.google.dagger:dagger-android:${Versions.dagger}"

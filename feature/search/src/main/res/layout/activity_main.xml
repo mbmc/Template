@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <data>
+        <import type="android.view.View"/>
+        <variable name="adapter" type="com.mbmc.template.feature.search.presentation.ui.RepoAdapter" />
+        <variable name="uiState" type="com.mbmc.template.feature.search.presentation.ui.UiSate" />
+        <variable name="userEventHandler" type="com.mbmc.template.feature.search.presentation.event.UserEventHandler" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/main_repo_btn"
+                android:hint="@string/handle"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/main_repo_handle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:onTextChanged="@{(text, start, stop, count) -> userEventHandler.onTextChanged(text)}"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+            <Button
+                android:id="@+id/main_repo_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:enabled="@{uiState.hasText &amp;&amp; !uiState.isLoading}"
+                android:text="@string/get"
+                android:onClick="@{() -> userEventHandler.onClicked()}"
+                />
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/main_repo_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:adapter="@{adapter}"
+                />
+            <ProgressBar
+                android:id="@+id/main_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                />
+            <FrameLayout
+                android:id="@+id/main_loading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#888888"
+                android:visibility="@{uiState.isLoading? View.VISIBLE : View.GONE}"
+                >
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:indeterminate="true"
+                    />
+            </FrameLayout>
+            <LinearLayout
+                android:id="@+id/main_error"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="#888888"
+                android:visibility="@{uiState.hasError? View.VISIBLE : View.GONE}"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/retry"
+                    />
+                <Button
+                    android:id="@+id/main_retry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/retry"
+                    android:onClick="@{() -> userEventHandler.onRetryClicked()}"
+                    />
+            </LinearLayout>
+        </FrameLayout>
+
+    </LinearLayout>
+
+</layout>

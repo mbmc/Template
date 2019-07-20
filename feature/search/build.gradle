@@ -46,7 +46,8 @@ dependencies {
     implementation Libraries.retrofit_moshi
     implementation Libraries.rxjava
 
-    implementation project(':core')
+    implementation project(':common:core')
+    implementation project(':common:design')
 
     testImplementation AndroidLibraries.core_testing
     testImplementation TestLibraries.junit

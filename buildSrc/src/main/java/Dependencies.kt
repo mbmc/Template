@@ -9,8 +9,8 @@ object Versions {
     const val min_sdk = 23
     const val target_sdk = 28
 
-    const val gradle = "3.4.1"
-    const val kotlin = "1.3.40"
+    const val gradle = "3.4.2"
+    const val kotlin = "1.3.41"
 
     // Android
     const val app_compat = "1.0.2"

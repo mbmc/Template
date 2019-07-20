@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">Template</string>
-    <string name="retry">Retry</string>
-    <string name="error">An error occurred, please try again</string>
-    <string name="handle">Github handle</string>
-    <string name="get">Get repos</string>
-</resources>

@@ -1,6 +1,6 @@
 package com.mbmc.template.feature.search.di.module
 
-import com.mbmc.template.core.di.module.SchedulerModule
+import com.mbmc.template.common.core.di.module.SchedulerModule
 import io.reactivex.Scheduler
 
 class TestScheduleModule : SchedulerModule() {

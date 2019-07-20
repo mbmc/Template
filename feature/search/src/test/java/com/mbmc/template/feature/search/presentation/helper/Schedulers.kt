@@ -1,6 +1,6 @@
 package com.mbmc.template.feature.search.presentation.helper
 
-import com.mbmc.template.core.util.Schedulers
+import com.mbmc.template.common.core.util.Schedulers
 
 object Schedulers {
     fun test(): Schedulers =

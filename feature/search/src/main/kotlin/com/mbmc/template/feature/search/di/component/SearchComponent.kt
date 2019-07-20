@@ -1,11 +1,11 @@
 package com.mbmc.template.feature.search.di.component
 
-import com.mbmc.template.core.di.component.CoreComponent
+import com.mbmc.template.common.core.di.component.CoreComponent
 import com.mbmc.template.feature.search.di.module.ApiModule
 import com.mbmc.template.feature.search.di.scope.SearchScope
 import com.mbmc.template.feature.search.di.module.MainModule
 import com.mbmc.template.feature.search.di.module.ViewModelModule
-import com.mbmc.template.feature.search.presentation.ui.MainActivity
+import com.mbmc.template.feature.search.presentation.ui.SearchActivity
 import dagger.Component
 
 @Component(
@@ -14,5 +14,5 @@ import dagger.Component
 )
 @SearchScope
 interface SearchComponent {
-    fun inject(activity: MainActivity)
+    fun inject(activity: SearchActivity)
 }

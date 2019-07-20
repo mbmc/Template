@@ -3,7 +3,7 @@ package com.mbmc.template.feature.search.presentation.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mbmc.template.core.util.Schedulers
+import com.mbmc.template.common.core.util.Schedulers
 import com.mbmc.template.feature.search.domain.usecase.RepoUseCase
 import com.mbmc.template.feature.search.presentation.entity.Mapper
 import com.mbmc.template.feature.search.presentation.entity.Repo

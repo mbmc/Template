@@ -1,0 +1,4 @@
+<resources>
+    <string name="search">Github search</string>
+    <string name="weather">Local weather</string>
+</resources>
